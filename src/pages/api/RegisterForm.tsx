@@ -91,7 +91,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isOpen, onChange }) => {
     const response = await Get();
     const users: UserType[] = response.items || [];
 
-    const Validate = users.find((user) => user.email === email.current?.value);
+    const ValidateEmail = users.find((user) => user.email === email.current?.value);
+    const ValidateName = users.find((user) => user.email === email.current?.value);
 
     const action = async () => {
       const data = {
@@ -120,12 +121,20 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isOpen, onChange }) => {
       navigate.push("/feed");
     }
 
-    if (!Validate) {
+    if (!ValidateEmail && !ValidateName) {
       return action();
-    } else {
-      alert("That mail is already registered");
-      return null;
     }
+
+    if (ValidateEmail) {
+      alert("That email is already registered");
+    }
+
+    if (ValidateName) {
+      alert("Name is already taken");
+    }
+
+    return null;
+
   };
 
   return (

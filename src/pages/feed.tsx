@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Header from "./api/Header";
 import { Lilita, fredoka } from ".";
 import { Get, getTip } from "./api/REST";
+import Link from "next/link";
 
 interface TipType {
   by: string;
@@ -75,19 +76,23 @@ const Feed = () => {
                     key={index}
                     className="w-full hb-auto bg-purple-700 p-6 rounded-xl shadow-md transition-transform transform hover:scale-105 "
                   >
-                    <div className="flex flex-row items-start justify-start gap-5">
-                      <img
-                        src={
-                          author?.profileimage ||
-                          "https://www.iconpacks.net/icons/2/free-user-icon-3297-thumb.png"
-                        }
-                        alt="profileimage"
-                        className="rounded-full mb-5 w-10 h-10 object-cover"
-                      />
-                      <h1 className="text-xl font-thin">
-                        {author?.name || "Unknown author"}
-                      </h1>
-                    </div>
+                    
+                      <Link href={`/profile/${author?.name}`}>
+                        <div className="flex flex-row items-start justify-start gap-5 cursor-pointer">
+                          <img
+                            src={
+                              author?.profileimage ||
+                              "https://www.iconpacks.net/icons/2/free-user-icon-3297-thumb.png"
+                            }
+                            alt="profileimage"
+                            className="rounded-full mb-5 w-10 h-10 object-cover"
+                          />
+                          <h1 className="text-xl font-thin">
+                            {author?.name || "Unknown author"}
+                          </h1>
+                        </div>
+                      </Link>
+                    
                     <h1 className="text-3xl font-thin text-white">
                       {item.type}
                     </h1>
