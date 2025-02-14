@@ -67,6 +67,8 @@ const Profile = () => {
                 Logout
               </button>
             </div>
+            <h1 className="text-purple-600 text-4xl mb-6 mt-5">Your Profile</h1>
+
             <img
               src={
                 userProfile.profileimage ||
@@ -75,7 +77,6 @@ const Profile = () => {
               alt={userProfile.name || "User profile image"}
               className="rounded-full mb-5 w-48 h-48 object-cover"
             />
-            <h1 className="text-purple-600 text-4xl mb-6">Your Profile</h1>
             <h2 className="text-xl text-gray-500 font-bold">
               {userProfile.name}
             </h2>

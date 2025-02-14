@@ -1,10 +1,8 @@
 "use client";
-
-import { v4 as uuidv4 } from "uuid";
 import React, { useRef, useState } from "react";
 import { Lilita } from "..";
 import { motion } from "framer-motion";
-import { Post } from "./REST";
+import { Get, Post } from "./REST";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { HandleInput } from "./Redux/MainSlice";
@@ -12,6 +10,11 @@ import { HandleInput } from "./Redux/MainSlice";
 interface RegisterFormProps {
   isOpen: boolean;
   onChange: () => void;
+}
+
+interface UserType {
+  name: string;
+  email: string;
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ isOpen, onChange }) => {
@@ -62,7 +65,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isOpen, onChange }) => {
     if (isOpen === true) {
       const newErrors: { [key: string]: string } = {};
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
       if (!username.current?.value) newErrors.username = "Username is required";
       if (!email.current?.value) {
         newErrors.email = "Email is required";
@@ -85,33 +87,49 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isOpen, onChange }) => {
 
   const handleSubmit = async () => {
     if (!validateForm()) return;
+    
+    const response = await Get();
+    const users: UserType[] = response.items || [];
 
-    const data = {
-      name: username.current?.value!,
-      email: email.current?.value!,
-      password: password.current?.value!,
-      profileimage: imageUrl,
-    };
-      console.log(imageUrl);
-    try {
-      const response = await Post([data]);
-      if (response.success) {
-        console.log("Successfully registered:", response.data);
-        alert("Registration successful!");
-        onChange();
-      } else {
-        console.error("Registration failed:", response.error);
+    const Validate = users.find((user) => user.email === email.current?.value);
+
+    const action = async () => {
+      const data = {
+        name: username.current?.value!,
+        email: email.current?.value!,
+        password: password.current?.value!,
+        profileimage: imageUrl,
+      };
+        console.log(imageUrl);
+      try {
+        const response = await Post([data]);
+        if (response.success) {
+          console.log("Successfully registered:", response.data);
+          alert("Registration successful!");
+          onChange();
+        } else {
+          console.error("Registration failed:", response.error);
+        }
+      } catch (error) {
+        console.error("Submission failed:", error);
+        alert("Something went wrong. Please try again.");
       }
-    } catch (error) {
-      console.error("Submission failed:", error);
-      alert("Something went wrong. Please try again.");
+    
+      dispatch(HandleInput({ email: data.email, password: data.password }));
+      
+      navigate.push("/feed");
     }
-    dispatch(HandleInput({ email: data.email, password: data.password }));
-    navigate.push("/feed");
+
+    if (!Validate) {
+      return action();
+    } else {
+      alert("That mail is already registered");
+      return null;
+    }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20">
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
