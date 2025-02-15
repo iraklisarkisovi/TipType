@@ -20,14 +20,6 @@ const User = () => {
   const router = useRouter();
   const { user } = router.query;
 
-  const Dataemail = useSelector((state: RootState) => state.MainR.email);
-
-  const handleLogout = () => {
-    dispatch(HandleInput({ email: "", password: "" }));
-    localStorage.removeItem("user");
-    router.push("/");
-  };
-
   useEffect(() => {
     if (!router.isReady) return;
 
@@ -84,7 +76,7 @@ const User = () => {
           </div>
         ) : (
           <p className="text-gray-600 text-lg">
-            No user profile found. Please check your email or log in again.
+            No user profile found. 
           </p>
         )}
       </div>

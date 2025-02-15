@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 import { fredoka, oswald } from '..';
-import { Plus } from 'lucide-react';
+import { Menu, Plus } from 'lucide-react';
 
 const Header = () => {
+    const [window, setWindow] = useState(false)
 
     const HeaderThings = [{it: 'Home', route: '/'}, {it: 'Profile', route: '/profile'}, {it:'feed', route: '/feed'}, {it: 'Company', route: "/"}]
   return (
@@ -12,9 +13,13 @@ const Header = () => {
       style={{ fontFamily: oswald.style.fontFamily }}
     >
       <div style={{ fontFamily: "var(--font-fredoka)" }}>
-        <strong className="text-xl tracking-widest">TIPTYPE</strong>
+        <Link href={'/'}><strong className="text-xl tracking-widest">TIPTYPE</strong></Link>
       </div>
-      <div className="flex flex-row items-center justify-around gap-10 ">
+      <div
+        className={`flex flex-row items-center justify-around gap-10 max-sm:gap-5 max-sm:bg-purple-600 max-sm:w-30 transition-all ease-in max-sm:text-lime-400 max-sm:p-10 max-sm:rounded-lg max-sm:flex-col max-sm:-bottom-80 max-sm:absolute ${
+          window ? "max-sm:translate-x-48" : "max-sm:translate-x-96"
+        }`}
+      >
         {HeaderThings.map((item) => (
           <h1 className="transition-all text-lg hover:tracking-widest ease-in-out">
             <Link href={item.route}>{item.it}</Link>
@@ -26,6 +31,11 @@ const Header = () => {
           </Link>
         </h1>
       </div>
+      <Menu
+        size={26}
+        className="sm:hidden cursor-pointer text-purple-600 hover:text-purple-500"
+        onClick={() => setWindow((prop) => !prop)}
+      />
     </header>
   );
 }
