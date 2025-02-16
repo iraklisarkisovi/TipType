@@ -6,7 +6,7 @@ import { Menu, Plus } from 'lucide-react';
 const Header = () => {
     const [window, setWindow] = useState(false)
 
-    const HeaderThings = [{it: 'Home', route: '/'}, {it: 'Profile', route: '/profile'}, {it:'feed', route: '/feed'}, {it: 'Company', route: "/"}]
+    const HeaderThings = [{it: 'Home', route: '/'}, {it: 'Profile', route: '/myprofile'}, {it:'feed', route: '/feed'}, {it: 'Company', route: "/"}]
   return (
     <header
       className="fixed top-0 w-full p-5 bg-lime-300 text-purple-500 flex flex-row items-center uppercase justify-around z-10"

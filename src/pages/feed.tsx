@@ -74,7 +74,7 @@ const Feed = () => {
                 return (
                   <div
                     key={index}
-                    className="w-full hb-auto bg-purple-700 p-6 rounded-xl shadow-md transition-transform transform hover:scale-105 "
+                    className="w-full hb-auto bg-purple-700 p-6 rounded-xl shadow-md transition-transform transform hover:scale-105"
                   >
                     
                       <Link href={`/profile/${author?.name}`}>
