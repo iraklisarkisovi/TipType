@@ -94,14 +94,6 @@ const User = () => {
             <>
               {userProfile ? (
                 <div className="bg-white p-10 rounded-lg shadow-md w-auto flex flex-col items-center justify-center">
-                  <div className="relative">
-                    <button
-                      className="absolute p-2 text-sm bg-red-600 -top-7 left-20 rounded-sm active:bg-red-500"
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </button>
-                  </div>
                   <h1 className="text-purple-600 text-4xl mb-6 mt-5">
                     {user}'s Profile
                   </h1>
