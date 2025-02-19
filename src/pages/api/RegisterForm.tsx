@@ -27,7 +27,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isOpen, onChange }) => {
   const dispatch = useDispatch();
 
   const navigate = useRouter();
-
+  const Name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +40,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isOpen, onChange }) => {
 
       try {
         const response = await fetch(
-          `https://api.cloudinary.com/v1_1/dmoyrrngf/image/upload`,
+          `https://api.cloudinary.com/v1_1/${Name}/image/upload`,
           {
             method: "POST",
             body: formData,
