@@ -84,10 +84,10 @@ const User = () => {
     <>
       <Header />
       <div
-        className="bg-lime-200 w-full h-full flex flex-col items-center justify-center p-10 mt-10 min-h-screen"
+        className="bg-lime-200 w-full h-full flex flex-col items-center justify-center p-10 min-h-screen"
         style={{ fontFamily: Lilita.style.fontFamily }}
       >
-        <div className="max-w-4xl px-4 mt-60 mb-10">
+        <div className="max-w-4xl px-4 max-sm:mt-10 mt-44mb-10">
           {loading || tipLoading ? (
             <p className="text-gray-600 text-lg">Loading user profile...</p>
           ) : (
@@ -97,7 +97,6 @@ const User = () => {
                   <h1 className="text-purple-600 text-4xl mb-6 mt-5">
                     {user}'s Profile
                   </h1>
-
                   <img
                     src={
                       userProfile.profileimage ||

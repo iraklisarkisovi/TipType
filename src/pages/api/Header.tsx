@@ -17,7 +17,7 @@ const Header = () => {
       </div>
       <div
         className={`flex flex-row items-center justify-around gap-10 max-sm:gap-5 max-sm:bg-purple-600 max-sm:w-30 transition-all ease-in max-sm:text-lime-400 max-sm:p-10 max-sm:rounded-lg max-sm:flex-col max-sm:-bottom-80 max-sm:absolute ${
-          window ? "max-sm:translate-x-48" : "max-sm:translate-x-96"
+          window ? "max-sm:translate-x-32" : "max-sm:translate-x-96"
         }`}
       >
         {HeaderThings.map((item) => (
