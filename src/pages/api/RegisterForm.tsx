@@ -101,11 +101,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isOpen, onChange }) => {
         password: password.current?.value!,
         profileimage: imageUrl,
       };
-        console.log(imageUrl);
       try {
         const response = await Post([data]);
         if (response.success) {
-          console.log("Successfully registered:", response.data);
           alert("Registration successful!");
           onChange();
         } else {
