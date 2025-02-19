@@ -4,6 +4,7 @@ import RegisterForm from './RegisterForm';
 import Login from './Login';
 import { useDispatch } from 'react-redux';
 import { OnClose } from './Redux/MainSlice';
+import Link from 'next/link';
 
 const Main = () => {
   const [Change, setChange] = useState(false);
@@ -35,7 +36,7 @@ const Main = () => {
               Let's try!
             </button>
             <button className="text-purple-500 bg-lime-400 px-6 p-3 rounded-xl transition-all hover:text-lime-500 hover:bg-purple-300">
-              Share
+              <Link href={'/addtip'}>Share</Link>
             </button>
           </div>
         </div>
